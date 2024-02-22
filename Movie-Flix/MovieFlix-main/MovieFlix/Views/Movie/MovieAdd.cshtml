@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "MovieAdd";
+    Layout = "~/Views/_LayoutPageAdmin.cshtml";
+}
+
+
+<section class="login spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+
+
+
+                <h3>Movie Add</h3>
+                <form action="~/Movie/MovieAdd" method="post">
+
+                    <input class="form-control form-control-lg" style="margin-bottom:25px;" type="text" placeholder="Movie Name" name="movieName" value=" ">
+
+                    <input class="form-control form-control-lg" style="margin-bottom:25px;" type="date" placeholder="Release Date" name="reliseDate">
+
+                    <input class="form-control form-control-lg" style="margin-bottom:25px;" type="hidden" placeholder="Trailar Link" name="trailerLink" value="Yes">
+
+                    <input class="form-control form-control-lg" style="margin-bottom:25px;" type="text" placeholder="Movie Details" name="movieDetailes">
+
+                    <input class="form-control form-control-lg" style="margin-bottom:25px;" type="text" placeholder="Home Poster 230 x 235 " name="moviePoster">
+                        
+                    <input class="form-control form-control-lg" style="margin-bottom:25px;" type="text" placeholder="Detailes Poster Link 300 x 440" name="detailesPoster">
+
+                    <input class="form-control form-control-lg" style="margin-bottom:25px;" type="text" placeholder="Price" name="moviePrice">
+
+                    <div style="margin-left:650px;">
+                        <button type="submit" class="site-btn"> Add </button>
+                    </div>
+
+                </form>
+
+
+
+
+
+            </div>
+           
+        </div>
+    </div>
+</section>

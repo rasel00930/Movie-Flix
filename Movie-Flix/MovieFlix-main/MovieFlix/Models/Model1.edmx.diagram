@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3ca61aeec16347b38859322a7e810afc" Name="Diagram1">
+        <EntityTypeShape EntityType="MovieFlixModel.ActorList" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MovieFlixModel.MovieList" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MovieFlixModel.User" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MovieFlixModel.sysdiagram" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="MovieFlixModel.payment" Width="1.5" PointX="7.625" PointY="1.5" />
+        <AssociationConnector Association="MovieFlixModel.FK__payment__movieId__60A75C0F" />
+        <AssociationConnector Association="MovieFlixModel.FK__payment__userId__5FB337D6" />
+        <EntityTypeShape EntityType="MovieFlixModel.Comment1" Width="1.5" PointX="5.375" PointY="4.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

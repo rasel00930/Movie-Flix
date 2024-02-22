@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MovieFlixModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ActorList">
+          <Key>
+            <PropertyRef Name="actorID" />
+          </Key>
+          <Property Name="actorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="actorName" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Comments">
+          <Key>
+            <PropertyRef Name="commentId" />
+          </Key>
+          <Property Name="commentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="int" />
+          <Property Name="userName" Type="varchar" MaxLength="255" />
+          <Property Name="movieId" Type="int" />
+          <Property Name="openion" Type="varchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="MovieList">
+          <Key>
+            <PropertyRef Name="movieID" />
+          </Key>
+          <Property Name="movieID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="movieName" Type="varchar" MaxLength="255" />
+          <Property Name="reliseDate" Type="date" />
+          <Property Name="rating" Type="int" />
+          <Property Name="trailerLink" Type="varchar" MaxLength="1000" />
+          <Property Name="moviePoster" Type="varchar" MaxLength="1000" />
+          <Property Name="movieLink" Type="varchar" MaxLength="1000" />
+          <Property Name="moivePrice" Type="varchar" MaxLength="255" />
+          <Property Name="detailesPoster" Type="varchar" MaxLength="1000" />
+          <Property Name="movieDetailes" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="payment">
+          <Key>
+            <PropertyRef Name="paymentId" />
+          </Key>
+          <Property Name="paymentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="int" />
+          <Property Name="movieId" Type="int" />
+          <Property Name="TransId" Type="varchar" MaxLength="20" />
+          <Property Name="Permisson" Type="varchar" MaxLength="5" />
+          <Property Name="mobileNo" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="passwords" Type="varchar" MaxLength="25" />
+          <Property Name="userType" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <Association Name="FK__payment__movieId__60A75C0F">
+          <End Role="MovieList" Type="Self.MovieList" Multiplicity="0..1" />
+          <End Role="payment" Type="Self.payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MovieList">
+              <PropertyRef Name="movieID" />
+            </Principal>
+            <Dependent Role="payment">
+              <PropertyRef Name="movieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__payment__userId__5FB337D6">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="payment" Type="Self.payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="payment">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <EntityContainer Name="MovieFlixModelStoreContainer">
+          <EntitySet Name="ActorList" EntityType="Self.ActorList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MovieList" EntityType="Self.MovieList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="payment" EntityType="Self.payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__payment__movieId__60A75C0F" Association="Self.FK__payment__movieId__60A75C0F">
+            <End Role="MovieList" EntitySet="MovieList" />
+            <End Role="payment" EntitySet="payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__payment__userId__5FB337D6" Association="Self.FK__payment__userId__5FB337D6">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="payment" EntitySet="payment" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MovieFlixModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ActorList">
+          <Key>
+            <PropertyRef Name="actorID" />
+          </Key>
+          <Property Name="actorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="actorName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MovieList">
+          <Key>
+            <PropertyRef Name="movieID" />
+          </Key>
+          <Property Name="movieID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="movieName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="reliseDate" Type="DateTime" Precision="0" />
+          <Property Name="rating" Type="Int32" />
+          <Property Name="trailerLink" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="moviePoster" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="movieLink" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="moivePrice" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="detailesPoster" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="movieDetailes" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="payments" Relationship="MovieFlixModel.FK__payment__movieId__60A75C0F" FromRole="MovieList" ToRole="payment" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="passwords" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="userType" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="payments" Relationship="MovieFlixModel.FK__payment__userId__5FB337D6" FromRole="User" ToRole="payment" />
+        </EntityType>
+        <EntityContainer Name="MovieFlixEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ActorLists" EntityType="Self.ActorList" />
+          <EntitySet Name="MovieLists" EntityType="Self.MovieList" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="sysdiagrams" EntityType="MovieFlixModel.sysdiagram" />
+          <EntitySet Name="payments" EntityType="MovieFlixModel.payment" />
+          <AssociationSet Name="FK__payment__movieId__60A75C0F" Association="MovieFlixModel.FK__payment__movieId__60A75C0F">
+            <End Role="MovieList" EntitySet="MovieLists" />
+            <End Role="payment" EntitySet="payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__payment__userId__5FB337D6" Association="MovieFlixModel.FK__payment__userId__5FB337D6">
+            <End Role="User" EntitySet="Users" />
+            <End Role="payment" EntitySet="payments" />
+          </AssociationSet>
+          <EntitySet Name="Comment1" EntityType="MovieFlixModel.Comment1" />
+        </EntityContainer>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="payment">
+          <Key>
+            <PropertyRef Name="paymentId" />
+          </Key>
+          <Property Name="paymentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int32" />
+          <Property Name="movieId" Type="Int32" />
+          <Property Name="TransId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Permisson" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MovieList" Relationship="MovieFlixModel.FK__payment__movieId__60A75C0F" FromRole="payment" ToRole="MovieList" />
+          <NavigationProperty Name="User" Relationship="MovieFlixModel.FK__payment__userId__5FB337D6" FromRole="payment" ToRole="User" />
+          <Property Name="mobileNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK__payment__movieId__60A75C0F">
+          <End Type="MovieFlixModel.MovieList" Role="MovieList" Multiplicity="0..1" />
+          <End Type="MovieFlixModel.payment" Role="payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MovieList">
+              <PropertyRef Name="movieID" />
+            </Principal>
+            <Dependent Role="payment">
+              <PropertyRef Name="movieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__payment__userId__5FB337D6">
+          <End Type="MovieFlixModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="MovieFlixModel.payment" Role="payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="payment">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Comment1">
+          <Key>
+            <PropertyRef Name="commentId" />
+          </Key>
+          <Property Name="commentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int32" />
+          <Property Name="userName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="movieId" Type="Int32" />
+          <Property Name="openion" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MovieFlixModelStoreContainer" CdmEntityContainer="MovieFlixEntities">
+          <EntitySetMapping Name="ActorLists">
+            <EntityTypeMapping TypeName="MovieFlixModel.ActorList">
+              <MappingFragment StoreEntitySet="ActorList">
+                <ScalarProperty Name="actorID" ColumnName="actorID" />
+                <ScalarProperty Name="actorName" ColumnName="actorName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MovieLists">
+            <EntityTypeMapping TypeName="MovieFlixModel.MovieList">
+              <MappingFragment StoreEntitySet="MovieList">
+                <ScalarProperty Name="movieDetailes" ColumnName="movieDetailes" />
+                <ScalarProperty Name="detailesPoster" ColumnName="detailesPoster" />
+                <ScalarProperty Name="movieID" ColumnName="movieID" />
+                <ScalarProperty Name="movieName" ColumnName="movieName" />
+                <ScalarProperty Name="reliseDate" ColumnName="reliseDate" />
+                <ScalarProperty Name="rating" ColumnName="rating" />
+                <ScalarProperty Name="trailerLink" ColumnName="trailerLink" />
+                <ScalarProperty Name="moviePoster" ColumnName="moviePoster" />
+                <ScalarProperty Name="movieLink" ColumnName="movieLink" />
+                <ScalarProperty Name="moivePrice" ColumnName="moivePrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="MovieFlixModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="passwords" ColumnName="passwords" />
+                <ScalarProperty Name="userType" ColumnName="userType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MovieFlixModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="payments">
+            <EntityTypeMapping TypeName="MovieFlixModel.payment">
+              <MappingFragment StoreEntitySet="payment">
+                <ScalarProperty Name="mobileNo" ColumnName="mobileNo" />
+                <ScalarProperty Name="Permisson" ColumnName="Permisson" />
+                <ScalarProperty Name="TransId" ColumnName="TransId" />
+                <ScalarProperty Name="movieId" ColumnName="movieId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="paymentId" ColumnName="paymentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comment1">
+            <EntityTypeMapping TypeName="MovieFlixModel.Comment1">
+              <MappingFragment StoreEntitySet="Comments">
+                <ScalarProperty Name="openion" ColumnName="openion" />
+                <ScalarProperty Name="movieId" ColumnName="movieId" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="commentId" ColumnName="commentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

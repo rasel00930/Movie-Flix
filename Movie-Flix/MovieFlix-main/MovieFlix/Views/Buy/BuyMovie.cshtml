@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "BuyMovie";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+<!-- Normal Breadcrumb Begin -->
+<section class="normal-breadcrumb set-bg" data-setbg="http://drive.google.com/uc?export=view&id=131HeXgoIK8-pST6JE11uDDoo5gdo3Wqo">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="normal__breadcrumb__text">
+                    <h2>MovieFlix</h2>
+                    <p>Purchase your favorite movie</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Normal Breadcrumb End -->
+<!-- Login Section Begin -->
+@if (Variable.user_login == 0)
+{
+    <script class="alert alert-warning">
+            alert('Sorry! You have to login first');
+            window.location.href = 'https://localhost:44391/LogIn/LoginPage'
+    </script>
+}
+
+<section class="login spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="login__form" style="margin-left:20%">
+                    <h3>Purchase @Variable.movieName With Bkash </h3>
+                    <div class="anime__details__pic set-bg">
+                        <img src="http://drive.google.com/uc?export=view&id=1L84gLBNG6zevx7eO9u6DWQWY8CDr1Ktv" alt="image load Failed" style="height:400px; width:400px">
+                        <h5 style="color:aliceblue">Send ৳ @Variable.moviePrice</h5>
+                    </div>
+
+                    <form action="~/Buy/BuyMovie" method="post">
+
+
+                        <input type="hidden" placeholder="" name="userId" value="@Variable.user_Id">
+                        <input type="hidden" placeholder="" name="movieId" value="@Variable.purchaseMovieID">
+
+                        <div class="input__item">
+                            <input type="text" placeholder="Phone Number" name="mobileNo" value=" ">
+                            <span class="icon_mail"></span>
+
+                        </div>
+                        <div class="input__item">
+                            <input type="text" placeholder="TxID" name="TransId" value=" ">
+                            <span class="icon_lock"></span>
+
+                        </div>
+                        @if (Variable.paymentErrorPhn != "")
+                        {
+                            <h6 class="text-danger" style="margin-top:5px;">@Variable.paymentErrorPhn</h6>
+                        }
+                        <input type="hidden" placeholder="" name="Permisson" value="Yes">
+
+
+
+                        <button type="submit" class="site-btn">Purchase</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

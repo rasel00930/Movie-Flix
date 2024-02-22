@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "VideoPlay";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+!DOCTYPE html>
+
+<body>
+    @*<video class="afterglow" id="myvideo" style="width:1080px; height:720px;" autoplay >
+                <source type="mp4" src="https://www.youtube.com/watch?v=f0qnQRKwjFI" />
+            </video
+        @if (Variable.user_login == 1)
+        {
+            <iframe src=@string.Concat("https://www.youtube.com/embed/",Variable.movieLink) style="width:1080px; height:650px;" title="Vimeo video" allowfullscreen></iframe>
+        }
+        else
+        {
+
+            <script class="alert alert-warning">
+                alert('Sorry! You have to login first');
+                window.location.href = 'https://localhost:44391/LogIn/LoginPage'
+            </script>
+        }>*@
+    <iframe src=@string.Concat("https://www.youtube.com/embed/",Variable.movieLink) style="width:1080px; height:650px;" title="Vimeo video" allowfullscreen></iframe>
+
+
+</body>
+
+

@@ -1,0 +1,117 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+
+    Layout = "~/Views/_LayoutPage1.cshtml";
+
+    if (ViewBag.person =="admin")
+    {
+        Layout = "~/Views/_LayoutPageAdmin.cshtml";
+    }
+
+
+}
+
+<section class="hero">
+    <div class="container">
+        <div class="hero__slider owl-carousel">
+            <div class="hero__items set-bg" data-setbg="~/img/hero/hero-1.jpg">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="hero__text">
+                            <div class="label">Adventure</div>
+                            <h2>Fate / Stay Night: Unlimited Blade Works</h2>
+                            <p>After 30 days of travel across the world...</p>
+                            <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero__items set-bg" data-setbg="~/img/hero/hero-1.jpg">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="hero__text">
+                            <div class="label">Adventure</div>
+                            <h2>Fate / Stay Night: Unlimited Blade Works</h2>
+                            <p>After 30 days of travel across the world...</p>
+                            <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero__items set-bg" data-setbg="~/img/hero/hero-1.jpg">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="hero__text">
+                            <div class="label">Adventure</div>
+                            <h2>Fate / Stay Night: Unlimited Blade Works</h2>
+                            <p>After 30 days of travel across the world...</p>
+                            <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="trending__product">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-8">
+                        <div class="section-title">
+                            <h4>Trending Now</h4>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+
+                        <div class="btn__all">
+                            <a href="#" class="primary-btn">View All <span class="arrow_right"></span></a>
+                        </div>
+                    </div>
+                </div>
+                <div style="display:flex; flex-direction:row;">
+
+
+                    <div class="row">
+                        @{
+                            String s1 = "http://drive.google.com/uc?export=view&id=";
+
+                            foreach (var x in ViewBag.movielist)
+                            {
+
+
+                                    <div class="card" style="width: 16rem; margin-right: 30px; margin-top: 30px; background-color: #00022e ">
+                                        <img src=@String.Concat(s1, x.moviePoster) style="width:255px; height:250px;" alt="image load Failed">
+
+                                        <div class="card-body">
+                                            <h5 class="card-title">@x.movieName</h5>
+                                            <p class="card-text">@x.movieDetailes</p>
+
+                                            <form action="~/MovieDetailes/Detailes" method="post">
+
+                                                <input type="hidden" name="movieID" value="@x.movieID" />
+                                               
+                                                <input type="hidden" name="moivePrice" value="@ViewBag.userId " />
+
+                                                <button type="submit" class="btn btn-danger">Watch More</button>
+                                            </form>
+
+
+                                        </div>
+
+                                    </div>
+
+
+                            }
+
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
